@@ -189,6 +189,46 @@ def setup_GPIO():
     GPIO.setup(BUTTON_GPIO_3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     GPIO.setup(BUTTON_GPIO_4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+def epd_Demo():
+     
+    if epd_type == "2in7_4gray":
+
+        logging.info("nothing")
+
+    elif epd_type == "2in7":
+ 
+        try:
+    
+            epd = epd2in7.EPD()
+        
+            logging.info("init and Clear")
+            epd.init()
+            epd.Clear(0xFF)
+        
+            logging.info("4.read bmp file on window")
+            Himage2 = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame
+            bmp = Image.open('100x100.bmp')
+            Himage2.paste(bmp, (50,10))
+            epd.display(epd.getbuffer(Himage2))
+            time.sleep(2)
+        
+            logging.info("Clear...")
+            epd.Clear(0xFF)
+            logging.info("Goto Sleep...")
+            epd.sleep()
+            
+        except IOError as e:
+            logging.info(e)
+        
+        except KeyboardInterrupt:    
+            logging.info("ctrl + c:")
+            epd2in7.epdconfig.module_exit()
+            exit()
+
+    else:
+    
+    
+
 def main(config, config_file):
 
     global epd_type
@@ -201,6 +241,8 @@ def main(config, config_file):
         ticker = Ticker(config, h, w)
     else:
         ticker = Ticker(config, w, h)
+
+    epd_Demo()
 
     height = ticker.mempool.mempool.get_block_tip_height()
     # lifetime of 2.7 panel is 5 years and 1000000 refresh
