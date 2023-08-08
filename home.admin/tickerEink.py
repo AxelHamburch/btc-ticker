@@ -191,13 +191,13 @@ def setup_GPIO():
 
 def epd_Demo():
      
-    if epd_type == "2in7_4gray":
+    #if epd_type == "2in7_4gray":
 
-        logging.info("nothing")
+        #logging.info("nothing")
 
-    elif epd_type == "2in7":
+    #elif epd_type == "2in7":
  
-        try:
+        #try:
     
             epd = epd2in7.EPD()
         
@@ -210,20 +210,20 @@ def epd_Demo():
             bmp = Image.open('100x100.bmp')
             Himage2.paste(bmp, (50,10))
             epd.display(epd.getbuffer(Himage2))
-            time.sleep(2)
+            time.sleep(10)
         
             logging.info("Clear...")
             epd.Clear(0xFF)
             logging.info("Goto Sleep...")
             epd.sleep()
             
-        except IOError as e:
-            logging.info(e)
+        #except IOError as e:
+            #logging.info(e)
         
-        except KeyboardInterrupt:    
-            logging.info("ctrl + c:")
-            epd2in7.epdconfig.module_exit()
-            exit()
+        #except KeyboardInterrupt:    
+            #logging.info("ctrl + c:")
+            #epd2in7.epdconfig.module_exit()
+            #exit()
 
     
     
