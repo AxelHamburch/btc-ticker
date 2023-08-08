@@ -225,7 +225,6 @@ def epd_Demo():
             epd2in7.epdconfig.module_exit()
             exit()
 
-    else:
     
     
 
