@@ -212,8 +212,8 @@ def epd_Demo():
             epd.display(epd.getbuffer(Himage2))
             time.sleep(10)
         
-            logging.info("Clear...")
-            epd.Clear(0xFF)
+            #logging.info("Clear...")
+            #epd.Clear(0xFF)
             logging.info("Goto Sleep...")
             epd.sleep()
             
