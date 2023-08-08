@@ -242,7 +242,7 @@ def main(config, config_file):
     else:
         ticker = Ticker(config, w, h)
 
-    epd_Demo()
+    # epd_Demo()
 
     height = ticker.mempool.mempool.get_block_tip_height()
     # lifetime of 2.7 panel is 5 years and 1000000 refresh
